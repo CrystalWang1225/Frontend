@@ -1,5 +1,5 @@
 import React from 'react';
-import SideNav, {  NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 // import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import default_user_image from './image/default_user_image.png';
@@ -52,14 +52,14 @@ export default class Mainpage extends React.Component {
                                     }}
                                 >
                                     <div style={{ textAlign: "center", margin: "20% 0" }}>
-                                        <img src={this.state.user_image}></img>
-                                        <h3 id="users_info" style={{ color: "white", textAlign: "center", fontSize: "20px" }}>
+                                        <img id = "user_image_sidenav" src={this.state.user_image}></img>
+                                        <h3 id="users_info" style={{ color: "white", textAlign: "center", fontSize: "25px" }}>
                                             {this.state.user_name}
                                             </h3>
                                     </div>
                                     <SideNav.Nav defaultSelected="profile">
 
-                                        <NavItem eventKey="profile" style={{ margin: "5px 0" }}>
+                                        <NavItem eventKey="mainpage/profile" style={{ margin: "5px 0" }}>
                                             <NavIcon>
                                                 <i className="fas fa-fw fa-id-card" style={{ fontSize: '1.75em' }} />
                                             </NavIcon>
@@ -67,7 +67,7 @@ export default class Mainpage extends React.Component {
                                                 Profile
                                                 </NavText>
                                         </NavItem>
-                                        <NavItem eventKey="twitter" style={{ margin: "5px 0" }}>
+                                        <NavItem eventKey="mainpage/twitter" style={{ margin: "5px 0" }}>
                                             <NavIcon>
                                                 <i className="fas fa-fw fa-envelope" style={{ fontSize: '1.75em' }} />
                                             </NavIcon>
@@ -75,7 +75,7 @@ export default class Mainpage extends React.Component {
                                                 Twitter
                                             </NavText>
                                         </NavItem>
-                                        <NavItem eventKey="friend" style={{ margin: "5px 0" }}>
+                                        <NavItem eventKey="mainpage/friend" style={{ margin: "5px 0" }}>
                                             <NavIcon>
                                                 <i className="fas fa-fw fa-users" style={{ fontSize: '1.75em' }} />
                                             </NavIcon>
@@ -88,9 +88,9 @@ export default class Mainpage extends React.Component {
                             </div>
                             <div className="main">
                                 <main >
-                                    <Route path="/profile" exact component={Profile} />
-                                    <Route path="/twitter" exact component={Twitter} />
-                                    <Route path="/friend" exact component={Friend} />
+                                    <Route path="/mainpage/profile" component={Profile} />
+                                    <Route path="/mainpage/twitter" component={Twitter} />
+                                    <Route path="/mainpage/friend" component={Friend} />
                                 </main>
                             </div>
                         </React.Fragment>

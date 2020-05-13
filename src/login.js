@@ -3,6 +3,9 @@ import React from 'react';
 import './login.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Mainpage from './Mainpage';
+import Twitter from './Twitter';	
+import Friend from './Friend';	
+import Profile from './Profile';
 
 function getCookie(name) {
     var value = "; " + document.cookie;
@@ -85,7 +88,8 @@ function checkIfCanLogin(currThis, callback){
                    ).then(response => {
                     if(!response.ok){
                         this.setState({   
-                            showWarning: true
+                            showWarning: true,
+                            warning_nameExisted:false
                         });
                     }
                     else{
@@ -137,7 +141,16 @@ function checkIfCanLogin(currThis, callback){
              },
              body: JSON.stringify(load)
          }
-         );
+         ).then(response =>{
+             console.log(response.status);
+             if (response.status == 401){
+             this.setState({
+                 showWarning: true,
+                 warning_nameExisted: true
+             });
+             console.log(this.state.warning_nameExisted);
+            }
+         });
         console.log("register clicked with username: " + name + "and password: " + password);
         console.log("constructior" + load.name + "and password: " +  load.password);
         console.log(JSON.stringify(load));
@@ -190,8 +203,11 @@ export default function App() {
     return (
         <Router>
             <Switch>
-              <Route exact path="/mainpage" component={Mainpage} />
-              <Route exact path="/" component={Login} />
+                <Route path="/mainpage" component={Mainpage} />	
+                <Route exact path="/" component={Login} />	
+                <Route path="/mainpage/profile" component={Profile} />	
+                <Route path="/mainpage/twitter" component={Twitter} />	
+                <Route path="/mainpage/friend" component={Friend} />
             </Switch>
         </Router>
     );

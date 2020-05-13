@@ -1,36 +1,21 @@
-#content_twitter {
+#content_friend {
     margin-left: 5%;
     max-width: 90%;
 }
 
-#border_box_msg {
+#border_box {
     border-style: solid;
     border-width: 7px;
     border-color: rgb(255, 188, 165);
     background-color: rgb(223, 222, 222);
+    max-width: 1200px;
 }
 
-#received_msgs {
+#received_requests {
     min-height: 110%;
 }
 
-#chat_box {
-    border-style: solid;
-    border-width: 7px;
-    border-color: rgb(255, 188, 165);
-    min-height: 250px;
-    max-height: 250px;
-    position: relative;
-    word-wrap: break-word;
-    min-width: 1000px;
-    max-width: 1000px;
-    overflow: scroll;
-    padding: 10px;
-    font-size: 20px;
-    display: inline-block;
-}
-
-#send_btn_msg {
+#send_btn_FReuqest {
     border-style: solid;
     border-width: 2px;
     border-color: rgb(115, 208, 244);
@@ -38,23 +23,15 @@
     max-width: 160px;
     position: absolute;
     margin-left: 20px;
-    margin-top: -3.2%;
+    margin-top: 1.25%;
     display: inline-block;
     font-size: 30px;
-    background-color: rgb(247, 198, 158);
+    background-color: rgb(115, 208, 244);
     color: white;
     cursor: pointer;
 }
 
-[contenteditable=true]:empty:before {
-    content: attr(placeholder);
-    pointer-events: none;
-    display: block;
-    color: rgb(139, 136, 136);
-    /* For Firefox */
-}
-
-#recipient {
+#addFriend {
     border-style: solid;
     border-width: 7px;
     border-color: rgb(255, 188, 165);
@@ -74,12 +51,12 @@
     background-color: rgb(92, 166, 195);
 }
 
-.single_msg_box {
+.single_friendReq_box {
     background-color: white;
     margin-left: 25px;
     margin-top: 35px;
-    min-height: 200%;
-    max-width: 95%;
+    min-height: 50px;
+    max-width: 1100px;
     font-size: 24px;
     border-radius: 10px;
     padding: 20px;
@@ -87,15 +64,23 @@
     margin-bottom: 30px;
 }
 
-.said {
+.accept {
     position: absolute;
-    ;
-    font-size: 20px;
+    font-size: 25px;
+    margin-left: 75%;
+    margin-top: -7.2%;
+    max-width: 100px;
+}
+.decline {
+    position: absolute;
+    font-size: 25px;
     margin-left: 85%;
-    margin-top: -6%;
+    margin-top: -7.2%;
+    max-width: 100px;
+    background-color: rgb(255, 51, 0) !important;
 }
 
-#warning_twitter {
+#warning_friend {
     font-size: 25px;
     color: red;
     position: absolute;

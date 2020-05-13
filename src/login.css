@@ -8,7 +8,7 @@
     margin-top: 150px;
     position: relative;
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color:rgb(245,223,203);
     padding: 20px 0 30px 0;
     position: fixed;
     top: 50%;
@@ -40,13 +40,13 @@ input:hover, .btn:hover {
 /* style the submit button */
 
 input[type=submit] {
-    background-color: #4CAF50;
+    background-color: rgb(161,31,50);
     color: white;
     cursor: pointer;
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+    background-color:rgb(214,32,59);
 }
 
 /* Two-column layout */

@@ -1,7 +1,9 @@
 import React from 'react';
 import './twitter.css';
 export default class Twitter extends React.Component {
-    messages =
+   
+    
+    messagessss =
     [{
         date: '2051.1.2',
         Id: 12345,
@@ -26,7 +28,8 @@ export default class Twitter extends React.Component {
         postText: 'I love sleep',
         user: 'DERF'
     }];
-all_chat = [];
+    all_chat = [];
+    messages = [];
 
 
     constructor(props) {
@@ -34,7 +37,7 @@ all_chat = [];
         this.state = {
             empty_msg: false,
             empty_msg: false,
-            msg_sent_success: false
+            msg_sent_success: false        
         }
     }
     send() {
@@ -47,6 +50,7 @@ all_chat = [];
                 empty_msg: false,
                 msg_sent_success: false
             });
+            document.getElementById("warning_twitter").style.color="red";
         }
         // if no user entered TODO do we need to check wether user is available?
         else if (!msg) {
@@ -55,6 +59,7 @@ all_chat = [];
                 empty_recipient: false,
                 msg_sent_success: false
             });
+            document.getElementById("warning_twitter").style.color="red";
 
         } else {
             this.setState({
@@ -93,13 +98,37 @@ all_chat = [];
         //     messages: the user's received messages(would better to be an array)
         // });
         // }
-        if (this.messages) {
-        Array.prototype.forEach.call(this.messages, element => {
-            var text = element.postText;
-            var user = element.user;
-            this.all_chat.push(<div><div className="single_msg_box">{text}</div> <div className="said"> Sent By {user}</div></div>);
-        });
-    }
+        fetch(`http://localhost:4567/getfeed?email=wang24@cooper.edu`,{
+        method: 'GET',
+        mode: 'cors',
+        headers:{
+           'Accpet': 'application/json',
+           'Content-Type': 'application/json'
+        },
+        }).then(response =>
+             response.json()).then(res =>{
+                const load = res;
+                    this.setState({
+                        messages: load
+                    });
+                
+                
+                if (this.state.messages) {
+                    Array.prototype.forEach.call(this.state.messages, element => {
+                        var text = element.postText;
+                        var user = element.senderId;
+                        // console.log(text);
+                        // console.log(user);
+                    this.all_chat.push(<div><div className="single_msg_box">{text}</div> <div className="said"> Sent by{user}</div></div>);
+                        
+                    });
+
+                }
+                this.setState({
+                    messages: load
+                });
+             });
+       
 
     }
     render() {
@@ -108,21 +137,21 @@ all_chat = [];
                 <h1 style={{ textAlign: "center" }}>Twitter</h1>
                 <div id="content_twitter">
                     <h2>Messages From Friends</h2>
-                    <div id="border_box">
+                    <div id="border_box_msg">
                         <div id="msg_box" style={{
                             position: 'relative',
                             height: '400px',
                             overflow: 'scroll'
                         }}>
                             <div id="received_msgs">
-                                {!this.messages ? <span style={{ fontSize: "20px" }}>Oops, looks like no one sends you message yet <i className="far fa-fw fa-surprise" style={{ fontSize: '1.3em' }} /></span> : this.all_chat}
+                    {!this.state.messages ? <span style={{ fontSize: "20px" }}>Oops, looks like no one sends you message yet <i className="far fa-fw fa-surprise" style={{ fontSize: '1.3em' }} /></span> : this.all_chat}
                             </div>
                         </div>
                     </div>
                     <div style={{ position: "abosulte", display: "inline-block" }}>
                         <input type="text" id="recipient" placeholder="Who would you like to talk to?" required />
                         <div contentEditable="true" id="chat_box" type="text" placeholder="What do you have on your mind?"></div>
-                        <input type="submit" value="Send" id="send_btn" onClick={() => this.send()} />
+                        <input type="submit" value="Send" id="send_btn_msg" onClick={() => this.send()} />
                         <span id="warning_twitter">
                             {this.state.empty_msg || this.state.empty_recipient || this.state.msg_sent_success ?
 
